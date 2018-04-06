@@ -15,7 +15,6 @@
 		4DD90AFD2077F44F00B10563 /* preloaderSpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90AFC2077F44F00B10563 /* preloaderSpinnerTests.swift */; };
 		4DD90B082077F44F00B10563 /* preloaderSpinnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B072077F44F00B10563 /* preloaderSpinnerUITests.swift */; };
 		4DD90B162077F51500B10563 /* preloaderSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B152077F51500B10563 /* preloaderSpinner.swift */; };
-		4DD90B182078030400B10563 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B172078030300B10563 /* TransitionManager.swift */; };
 		4DD90B1A2078064900B10563 /* preloaderSpinnerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		4DD90B072077F44F00B10563 /* preloaderSpinnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preloaderSpinnerUITests.swift; sourceTree = "<group>"; };
 		4DD90B092077F44F00B10563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DD90B152077F51500B10563 /* preloaderSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preloaderSpinner.swift; sourceTree = "<group>"; };
-		4DD90B172078030300B10563 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preloaderSpinnerTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,15 +101,13 @@
 		4DD90AE62077F44C00B10563 /* preloaderSpinner */ = {
 			isa = PBXGroup;
 			children = (
+				4DD90B1D207836AD00B10563 /* preloaderSpinnerLab */,
 				4DD90AE72077F44C00B10563 /* AppDelegate.swift */,
 				4DD90AE92077F44C00B10563 /* ViewController.swift */,
 				4DD90AEB2077F44C00B10563 /* Main.storyboard */,
 				4DD90AEE2077F44F00B10563 /* Assets.xcassets */,
 				4DD90AF02077F44F00B10563 /* LaunchScreen.storyboard */,
 				4DD90AF32077F44F00B10563 /* Info.plist */,
-				4DD90B152077F51500B10563 /* preloaderSpinner.swift */,
-				4DD90B172078030300B10563 /* TransitionManager.swift */,
-				4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */,
 			);
 			path = preloaderSpinner;
 			sourceTree = "<group>";
@@ -132,6 +128,15 @@
 				4DD90B092077F44F00B10563 /* Info.plist */,
 			);
 			path = preloaderSpinnerUITests;
+			sourceTree = "<group>";
+		};
+		4DD90B1D207836AD00B10563 /* preloaderSpinnerLab */ = {
+			isa = PBXGroup;
+			children = (
+				4DD90B152077F51500B10563 /* preloaderSpinner.swift */,
+				4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */,
+			);
+			path = preloaderSpinnerLab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DD90B182078030400B10563 /* TransitionManager.swift in Sources */,
 				4DD90AEA2077F44C00B10563 /* ViewController.swift in Sources */,
 				4DD90AE82077F44C00B10563 /* AppDelegate.swift in Sources */,
 				4DD90B162077F51500B10563 /* preloaderSpinner.swift in Sources */,
