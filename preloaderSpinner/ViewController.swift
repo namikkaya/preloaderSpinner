@@ -8,16 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, preloaderSpinnerDelegate {
+    let transitionManager = preloaderSpinnerTransition()
+    
+    @IBAction func popUP(_ sender: Any) {
+        let controller = preloaderSpinner()
+        controller.delegate = self
+        controller.modalPresentationStyle = .overFullScreen
+        controller.transitioningDelegate = transitionManager
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    // preloaderSpinner Delegate
+    func preloaderSpinnerClose() {
+        print("spinner çalıştı")
     }
 
 
