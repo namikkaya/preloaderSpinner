@@ -14,18 +14,17 @@ protocol controllerAnimationDelegate:class {
     func controllerTransitionBeginPresent()
     func controllerTransitionBeginDismissed()
 }
-
 class preloaderSpinnerTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
     
     private var presenting:Bool = true
     var leftSide:Bool = false
     
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.2
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if(presenting){
             let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
             let container = transitionContext.containerView
@@ -64,12 +63,12 @@ class preloaderSpinnerTransition: NSObject, UIViewControllerAnimatedTransitionin
         
     }
     
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    internal func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.presenting = true
         return self
     }
     
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    internal func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.presenting = false
         return self
     }

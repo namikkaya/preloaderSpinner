@@ -8,15 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController, preloaderSpinnerDelegate {
-    let transitionManager = preloaderSpinnerTransition()
+class ViewController: UIViewController, preloaderDelegate {
+    func preloaderClose() {
+        print("pencere kapandı")
+    }
     
+    func preloaderOpen() {
+        print("pencere açıldı")
+    }
+    
+    
+    var pre:preloader!
     @IBAction func popUP(_ sender: Any) {
-        let controller = preloaderSpinner()
-        controller.delegate = self
-        controller.modalPresentationStyle = .overFullScreen
-        controller.transitioningDelegate = transitionManager
-        self.present(controller, animated: true, completion: nil)
+        pre = preloader()
+        pre.delegate = self
+        pre.begin()
+        
     }
     
     override func viewDidLoad() {
@@ -27,11 +34,6 @@ class ViewController: UIViewController, preloaderSpinnerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-    }
-    
-    // preloaderSpinner Delegate
-    func preloaderSpinnerClose() {
-        print("spinner çalıştı")
     }
 
 

@@ -16,6 +16,7 @@
 		4DD90B082077F44F00B10563 /* preloaderSpinnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B072077F44F00B10563 /* preloaderSpinnerUITests.swift */; };
 		4DD90B162077F51500B10563 /* preloaderSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B152077F51500B10563 /* preloaderSpinner.swift */; };
 		4DD90B1A2078064900B10563 /* preloaderSpinnerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */; };
+		4DD90B1F2078379800B10563 /* preloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD90B1E2078379800B10563 /* preloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4DD90B092077F44F00B10563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DD90B152077F51500B10563 /* preloaderSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preloaderSpinner.swift; sourceTree = "<group>"; };
 		4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preloaderSpinnerTransition.swift; sourceTree = "<group>"; };
+		4DD90B1E2078379800B10563 /* preloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				4DD90B152077F51500B10563 /* preloaderSpinner.swift */,
 				4DD90B192078064900B10563 /* preloaderSpinnerTransition.swift */,
+				4DD90B1E2078379800B10563 /* preloader.swift */,
 			);
 			path = preloaderSpinnerLab;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD90B1F2078379800B10563 /* preloader.swift in Sources */,
 				4DD90AEA2077F44C00B10563 /* ViewController.swift in Sources */,
 				4DD90AE82077F44C00B10563 /* AppDelegate.swift in Sources */,
 				4DD90B162077F51500B10563 /* preloaderSpinner.swift in Sources */,

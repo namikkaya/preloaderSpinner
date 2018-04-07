@@ -17,7 +17,7 @@ class preloaderSpinner: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
 
         let text:UILabel = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 40))
         text.text = "naber ben namık"
@@ -32,9 +32,8 @@ class preloaderSpinner: UIViewController {
     }
     
     @objc func pressButton(_ sender: UIButton){
-        print("button click")
-        if (delegate != nil){
-            delegate?.preloaderSpinnerClose()
+        if (self.delegate != nil){
+            self.delegate?.preloaderSpinnerClose()
         }
         self.dismiss(animated: true, completion: nil)
     }
