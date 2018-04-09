@@ -14,7 +14,8 @@ protocol preloaderSpinnerDelegate:class {
 
 /// UIView oluşturucu
 class preloaderSpinner: UIViewController {
-    weak var delegate:preloaderSpinnerDelegate?
+    
+    weak var delegate:preloaderSpinnerDelegate!
     
     private var trackLayer:CAShapeLayer = {
         let cirPath = UIBezierPath(arcCenter: .zero, radius: (80)/2, startAngle: 0, endAngle: CGFloat.pi*2, clockwise: true)
@@ -113,7 +114,6 @@ class preloaderSpinner: UIViewController {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         drawPreloader()
@@ -124,11 +124,12 @@ class preloaderSpinner: UIViewController {
         self.view.backgroundColor = backgroundColor
     }
     
+    /*
     func rotate(angle: CGFloat, _view:UIView) {
         let radians = angle / 180.0 * CGFloat(Double.pi)
         let rotation = _view.transform.rotated(by: radians)
         _view.transform = rotation
-    }
+    }*/
     
     private func drawPreloader(){
         cShapeLayer.position = self.view.center
@@ -182,14 +183,12 @@ class preloaderSpinner: UIViewController {
         aShapeLayer.add(rotationa, forKey: "opena")
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     public func close(){
         self.dismiss(animated: true) {
-            self.cShapeLayer.removeAllAnimations()
-            self.delegate?.preloaderSpinnerViewClosed()
+            if self.delegate != nil {
+                self.delegate?.preloaderSpinnerViewClosed()
+            }
+            
         }
     }
     
@@ -205,5 +204,17 @@ class preloaderSpinner: UIViewController {
         trackLayer.removeFromSuperlayer()
     }
     
+    /*
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return UIInterfaceOrientationMask.all
+    }*/
+    
+    override var shouldAutorotate: Bool{
+        cShapeLayer.position = self.view.center
+        trackLayer.position = self.view.center
+        bShapeLayer.position = self.view.center
+        aShapeLayer.position = self.view.center
+        return true
+    }
     
 }

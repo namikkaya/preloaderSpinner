@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, preloaderDelegate {
     var pre:preloader!
+    var request:Request?
     
-    /// Preloader kapatıldığı an cevap döner.
+    private var data:allDatesData?
+    
+    private var path:String = "http://www.millipiyango.gov.tr/sonuclar/listCekilisleriTarihleri.php"
+    
+    /// Preloader kapatıldığı an cevap döner. preloaderDelegate
     func preloaderClosed() {
-        preloaderClose()
-        pre = nil
+        if (pre != nil){
+            pre = nil
+        }
+        showDataTable()
     }
     
-    func preloaderClose() {
+    func showDataTable() {
         let sVC = self.storyboard?.instantiateViewController(withIdentifier: "secondVC") as! secondViewController
-        self.present(sVC, animated: true)
+        sVC.data = self.data
+        //self.present(sVC, animated: true)
+        self.navigationController?.pushViewController(sVC, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if (pre != nil){
+            pre = nil
+        }
     }
     
     override func viewDidLoad() {
@@ -27,26 +44,49 @@ class ViewController: UIViewController, preloaderDelegate {
         
     }
     
-    @IBAction func popUP(_ sender: Any) {
-        
-        // test timer. Webservice result data
-        _ = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.update), userInfo: nil, repeats: false)
-        
-        
+    private func openSpinner(){
         pre = preloader()
+        pre.delegate = self
         pre.backgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
         pre.trackerColor = UIColor.clear
         pre.cSpinnerColor = UIColor.red
         pre.aSpinnerColor = UIColor.blue
         pre.bSpinnerColor = UIColor.yellow
-        pre.delegate = self
         pre.begin()
     }
     
-    @objc func update() {
-        pre.close()
+    private func closeSpinner(){
+        if (self.pre) != nil {
+            self.pre.close()
+        }
     }
-
-
+    
+    @IBAction func popUP(_ sender: Any) {
+        self.openSpinner()
+        // ALAMOFIRE
+        request = Alamofire.request(path, method: HTTPMethod.post, parameters: ["tur":"sayisal"], encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            // veri döndüğünde preloaderSpinner kapatılcak
+            self.closeSpinner()
+            
+            switch response.result {
+            case .success:
+                do {
+                    let _data = try JSONSerialization.data(withJSONObject: response.result.value ?? NSArray(), options: [])
+                    let dt = try JSONDecoder().decode([dateData].self, from: _data)
+                    self.data = allDatesData(data: dt)
+                } catch {
+                    print("problem")
+                }
+                break
+            case .failure(let error):
+                if error._code == NSURLErrorTimedOut {
+                    //HANDLE TIMEOUT HERE
+                }
+                print("\n\nAuth request failed with error:\n \(error)")
+                break
+            }
+            
+        })
+    }
 }
 

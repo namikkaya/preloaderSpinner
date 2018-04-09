@@ -10,22 +10,15 @@ import Foundation
 import UIKit
 
 protocol preloaderDelegate:class {
-    func preloaderClosed();
+    func preloaderClosed()
 }
 
 class preloader:NSObject, preloaderSpinnerDelegate {
-    let transitionManager = preloaderSpinnerTransition()
-    private var controller:preloaderSpinner?
-    weak var delegate: UIViewController?
     
-    private var percentageHolder:CGFloat = 0
-    var percentage:CGFloat {
-        set{
-            percentageHolder = newValue
-        }get{
-            return percentageHolder
-        }
-    }
+    var transitionManager:preloaderSpinnerTransition!
+    
+    var controller:preloaderSpinner?
+    weak var delegate: UIViewController?
     
     private var spinnerColorHolder:UIColor = UIColor.red
     /// En dıştaki dönen topaç rengi
@@ -58,7 +51,6 @@ class preloader:NSObject, preloaderSpinnerDelegate {
         }
     }
     
-    
     private var bSpinnerColorHolder:UIColor = UIColor.green
     /// Ortadaki topaç rengi
     var bSpinnerColor:UIColor {
@@ -82,6 +74,7 @@ class preloader:NSObject, preloaderSpinnerDelegate {
     
     override init() {
         super.init()
+        transitionManager = preloaderSpinnerTransition()
     }
     
     // bu class için referans
@@ -102,12 +95,19 @@ class preloader:NSObject, preloaderSpinnerDelegate {
         delegate?.present(controller!, animated: true, completion: nil)
     }
     
-    internal func preloaderSpinnerViewClosed() {
-        preloaderListener?.preloaderClosed()
-        controller?.view.layer.removeAllAnimations()
+    func preloaderSpinnerViewClosed() {
+        self.preloaderListener?.preloaderClosed()
         controller?.view.layer.removeFromSuperlayer()
         controller = nil
     }
+    
+    deinit {
+        preloaderListener = nil
+        controller?.delegate = nil
+        controller = nil
+        transitionManager = nil
+    }
+    
     /// Kapatmak için kullanılır.
     public func close(){
         controller?.close()

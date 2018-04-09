@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCell" rowHeight="58" id="ffh-gX-Hv0" customClass="basicCell" customModule="preloaderSpinner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ffh-gX-Hv0" id="NzY-6B-Q30">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tv-d6-BBb">
+                        <rect key="frame" x="32" y="18" width="327" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="yPs-w0-dOy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43k-Lf-1EO">
+                        <rect key="frame" x="4" y="18" width="20" height="20"/>
+                        <color key="backgroundColor" red="1" green="0.55163468989999997" blue="0.28519629060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="9vf-VB-XfY"/>
+                            <constraint firstAttribute="width" constant="20" id="iwX-hv-ff1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="6tv-d6-BBb" firstAttribute="trailing" secondItem="NzY-6B-Q30" secondAttribute="trailingMargin" id="3TB-MK-A08"/>
+                    <constraint firstItem="43k-Lf-1EO" firstAttribute="centerY" secondItem="NzY-6B-Q30" secondAttribute="centerY" id="4zi-BM-u7E"/>
+                    <constraint firstItem="43k-Lf-1EO" firstAttribute="leading" secondItem="NzY-6B-Q30" secondAttribute="leading" constant="4" id="OWi-f8-nID"/>
+                    <constraint firstItem="6tv-d6-BBb" firstAttribute="leading" secondItem="43k-Lf-1EO" secondAttribute="trailing" constant="8" id="sGg-8i-m0m"/>
+                    <constraint firstItem="6tv-d6-BBb" firstAttribute="centerY" secondItem="NzY-6B-Q30" secondAttribute="centerY" id="uBt-bA-fTA"/>
+                    <constraint firstItem="6tv-d6-BBb" firstAttribute="leading" secondItem="43k-Lf-1EO" secondAttribute="trailing" constant="8" id="xlH-8f-Bqd"/>
+                    <constraint firstItem="6tv-d6-BBb" firstAttribute="trailing" secondItem="NzY-6B-Q30" secondAttribute="trailingMargin" id="ylq-MY-Gja"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="colorView" destination="43k-Lf-1EO" id="SzL-C3-0a1"/>
+                <outlet property="titleText" destination="6tv-d6-BBb" id="N6W-KY-xTY"/>
+            </connections>
+            <point key="canvasLocation" x="-125.5" y="97"/>
+        </tableViewCell>
+    </objects>
+</document>
