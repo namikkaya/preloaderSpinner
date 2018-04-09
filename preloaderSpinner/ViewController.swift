@@ -9,21 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController, preloaderDelegate {
-    func preloaderClose() {
-        print("pencere kapandı")
-    }
-    
-    func preloaderOpen() {
-        print("pencere açıldı")
-    }
-    
-    
     var pre:preloader!
-    @IBAction func popUP(_ sender: Any) {
-        pre = preloader()
-        pre.delegate = self
-        pre.begin()
-        
+    
+    /// Preloader kapatıldığı an cevap döner.
+    func preloaderClosed() {
+        preloaderClose()
+        pre = nil
+    }
+    
+    func preloaderClose() {
+        let sVC = self.storyboard?.instantiateViewController(withIdentifier: "secondVC") as! secondViewController
+        self.present(sVC, animated: true)
     }
     
     override func viewDidLoad() {
@@ -31,9 +27,24 @@ class ViewController: UIViewController, preloaderDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @IBAction func popUP(_ sender: Any) {
         
+        // test timer. Webservice result data
+        _ = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.update), userInfo: nil, repeats: false)
+        
+        
+        pre = preloader()
+        pre.backgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
+        pre.trackerColor = UIColor.clear
+        pre.cSpinnerColor = UIColor.red
+        pre.aSpinnerColor = UIColor.blue
+        pre.bSpinnerColor = UIColor.yellow
+        pre.delegate = self
+        pre.begin()
+    }
+    
+    @objc func update() {
+        pre.close()
     }
 
 

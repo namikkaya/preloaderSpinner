@@ -10,31 +10,107 @@ import Foundation
 import UIKit
 
 protocol preloaderDelegate:class {
-    func preloaderClose();
-    func preloaderOpen();
+    func preloaderClosed();
 }
 
 class preloader:NSObject, preloaderSpinnerDelegate {
-    weak var preloaderListener:preloaderDelegate?
-    internal func preloaderSpinnerClose() {
-        preloaderListener?.preloaderClose()
+    let transitionManager = preloaderSpinnerTransition()
+    private var controller:preloaderSpinner?
+    weak var delegate: UIViewController?
+    
+    private var percentageHolder:CGFloat = 0
+    var percentage:CGFloat {
+        set{
+            percentageHolder = newValue
+        }get{
+            return percentageHolder
+        }
+    }
+    
+    private var spinnerColorHolder:UIColor = UIColor.red
+    /// En dıştaki dönen topaç rengi
+    var cSpinnerColor:UIColor{
+        set{
+            spinnerColorHolder = newValue
+        }get{
+            return spinnerColorHolder
+        }
+    }
+    
+    private var trackerColorHolder:UIColor = UIColor.gray
+    /// En dış topaç rayı rengi
+    var trackerColor:UIColor {
+        set{
+            trackerColorHolder = newValue
+        }get{
+            return trackerColorHolder
+        }
+    }
+    
+    private var backgroundColorHolder:UIColor = UIColor.black.withAlphaComponent(0.3)
+    
+    /// Arkaplan rengi
+    var backgroundColor:UIColor {
+        set{
+            backgroundColorHolder = newValue
+        }get{
+            return backgroundColorHolder
+        }
+    }
+    
+    
+    private var bSpinnerColorHolder:UIColor = UIColor.green
+    /// Ortadaki topaç rengi
+    var bSpinnerColor:UIColor {
+        set{
+            bSpinnerColorHolder = newValue
+        }get{
+            return bSpinnerColorHolder
+        }
+    }
+    
+    
+    private var aSpinnerColorHolder:UIColor = UIColor.white
+    /// İç taraftaki topaç rengi
+    var aSpinnerColor:UIColor {
+        set{
+            aSpinnerColorHolder = newValue
+        }get{
+            return aSpinnerColorHolder
+        }
     }
     
     override init() {
         super.init()
     }
     
-    weak var delegate: UIViewController?
-    let transitionManager = preloaderSpinnerTransition()
+    // bu class için referans
+    private weak var preloaderListener:preloaderDelegate?
     
+    /// Açmak için kullanılır.
     public func begin(){
         preloaderListener = delegate as? preloaderDelegate
-        let controller = preloaderSpinner()
-        controller.delegate = self
-        controller.modalPresentationStyle = .overFullScreen
-        controller.transitioningDelegate = transitionManager
-        delegate?.present(controller, animated: true, completion: nil)
-        preloaderListener?.preloaderOpen()
+        controller = preloaderSpinner()
+        controller?.delegate = self
+        controller?.backgroundColor = backgroundColor
+        controller?.spinnerColor = cSpinnerColor
+        controller?.trackerColor = trackerColor
+        controller?.aSpinnerColor = aSpinnerColor
+        controller?.bSpinnerColor = bSpinnerColor
+        controller?.modalPresentationStyle = .overFullScreen
+        controller?.transitioningDelegate = transitionManager
+        delegate?.present(controller!, animated: true, completion: nil)
+    }
+    
+    internal func preloaderSpinnerViewClosed() {
+        preloaderListener?.preloaderClosed()
+        controller?.view.layer.removeAllAnimations()
+        controller?.view.layer.removeFromSuperlayer()
+        controller = nil
+    }
+    /// Kapatmak için kullanılır.
+    public func close(){
+        controller?.close()
     }
     
 }

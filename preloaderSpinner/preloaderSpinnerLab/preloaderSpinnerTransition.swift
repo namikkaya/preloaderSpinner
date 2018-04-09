@@ -9,21 +9,14 @@
 import Foundation
 import UIKit
 
-
-protocol controllerAnimationDelegate:class {
-    func controllerTransitionBeginPresent()
-    func controllerTransitionBeginDismissed()
-}
+/// Preloader Transtion -> Sayfa animasyon hareketi
 class preloaderSpinnerTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
-    
     private var presenting:Bool = true
     var leftSide:Bool = false
-    
     
     internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.2
     }
-    
     internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if(presenting){
             let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
@@ -62,13 +55,11 @@ class preloaderSpinnerTransition: NSObject, UIViewControllerAnimatedTransitionin
         }
         
     }
-    
-    internal func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.presenting = true
         return self
     }
-    
-    internal func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.presenting = false
         return self
     }
