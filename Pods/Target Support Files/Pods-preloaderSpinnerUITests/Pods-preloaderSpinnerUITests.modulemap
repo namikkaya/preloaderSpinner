@@ -1,0 +1,6 @@
+framework module Pods_preloaderSpinnerUITests {
+  umbrella header "Pods-preloaderSpinnerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
