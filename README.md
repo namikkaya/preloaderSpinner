@@ -7,6 +7,10 @@ preloaderSpinner - popUp ViewController
 
 open source, simple and fast
 
+For Service Test:
+[Alamofire](https://github.com/Alamofire/Alamofire)
+
+
 
 
 
